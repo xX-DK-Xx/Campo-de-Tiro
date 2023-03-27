@@ -15,23 +15,18 @@ public class Bala : MonoBehaviour
     {
         rb.AddRelativeForce(new Vector3(-Info.VelocidadP, 0,0));
     }
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.tag == "Entorno")
+        if (other.tag == "Blanco")
         {
+            ControlEstadisticas.Instancia?.Impacto(true);
+            Debug.Log(1);
             apa();
         }
-        if (collision.tag == "enemy")
+        if (other.tag == "Entorno")
         {
-            //collision.GetComponent<Enemigo>().dama(CalcularDaño());
-            if (Penetraciones == 0)
-            {
-                apa();
-            }
-            else
-            {
-                Penetraciones--;
-            }
+            ControlEstadisticas.Instancia?.Impacto(false);
+            apa();
         }
     }
     protected void apa()
