@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Arma : MonoBehaviour
 {
@@ -8,56 +9,62 @@ public class Arma : MonoBehaviour
     [SerializeField] protected GameObject PuntoSalida;
     [SerializeField] protected ParticleSystem Destello;
     [SerializeField] protected AudioClip SonidoDisparo;
+    [SerializeField] PoolBalas Impactos;
     [Header("Carga")]
     [SerializeField] protected int BalasCargador;
     [SerializeField] protected float TiempoRecarga;
-    [Header("Bala")]
-    [SerializeField] protected int Daño;
-    [SerializeField] protected int Velocidad;
-    [SerializeField] protected float Rango;
     [Header("Disparo")]
     [SerializeField] protected float ratefire;
-    public int DañoP { get { return Daño; } }
-    public int VelocidadP { get { return Velocidad; } }
-    public float RangoP { get { return Rango; } }
+    [SerializeField] protected LayerMask LM;
     protected int MunicionActual;
     protected float DispercionAcumulada;
     protected bool PuedeDisparas = true, PuedeREcargar = true;
-    protected PoolBalas Pool;
     protected Coroutine RutinaDispercion;
     protected void Awake()
     {
         MunicionActual = BalasCargador;
-        Pool = GetComponent<PoolBalas>();
     }
-    protected virtual void Update()
+
+    public void Disparar(InputAction.CallbackContext Ac)
     {
-        if (Input.GetKeyDown(KeyCode.R) && PuedeREcargar)
+        if (this.enabled)
         {
-            if (MunicionActual != BalasCargador)
+            if (Ac.performed && PuedeDisparas == true && MunicionActual > 0 && Time.deltaTime != 0)
             {
-                PuedeREcargar = false;
-                StartCoroutine(TienpoRecargar());
+                MunicionActual--;
+                //controllersounds.instanse?.ponersonido(SonidoDisparo);
+                InstanciarBala();
             }
         }
     }
-    protected void Disparar()
+    public void IntertarRecarga(InputAction.CallbackContext Ac)
     {
-        if (PuedeDisparas == true && MunicionActual > 0 && Time.deltaTime != 0)
+        if (MunicionActual != BalasCargador && PuedeREcargar && Ac.performed)
         {
-            MunicionActual--;
-            //controllersounds.instanse?.ponersonido(SonidoDisparo);
-            InstanciarBala();
+            PuedeREcargar = false;
+            StartCoroutine(TienpoRecargar());
         }
     }
     protected virtual void InstanciarBala()
     {
-        GameObject bala = Pool.ReturnBala();
-        bala.transform.position = PuntoSalida.transform.position;
-        bala.transform.localRotation = transform.localRotation;
-        bala.SetActive(true);
         PuedeDisparas = false;
+        RaycastHit Impacto;   
+        if (Physics.Raycast(PuntoSalida.transform.position, PuntoSalida.transform.forward, out Impacto, LM))
+        {
+            ControlEstadisticas.Instancia?.Impacto(true);
+            GameObject Imp = Impactos.ReturnBala();
+            Imp.transform.position = new Vector3(Imp.transform.position.x,Impacto.point.y, Impacto.point.z);
+            Imp.SetActive(true);
+        }
+        else
+        {
+            ControlEstadisticas.Instancia?.Impacto(false);
+        }
         StartCoroutine("Cadencia");
+    }
+    private void OnDrawGizmos()
+    {
+        Debug.DrawRay(PuntoSalida.transform.position, PuntoSalida.transform.forward);
     }
     protected void Recargar()
     {

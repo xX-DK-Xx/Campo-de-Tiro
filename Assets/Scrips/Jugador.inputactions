@@ -1,0 +1,45 @@
+{
+    "name": "Jugador",
+    "maps": [
+        {
+            "name": "Pistola",
+            "id": "d712dbcb-f831-4034-b297-bf3a0f9efa82",
+            "actions": [
+                {
+                    "name": "Disparar",
+                    "type": "Button",
+                    "id": "06a21314-ecbe-4408-9d92-58211bed69a2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b0ae6fe0-4c60-4541-8754-b59054841d5c",
+                    "path": "<XRInputV1::Oculus::OculusTouchControllerLeft>{RightHand}/grippressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Disparar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d4766d95-928c-4100-ad72-9131ab4e95cd",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Disparar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

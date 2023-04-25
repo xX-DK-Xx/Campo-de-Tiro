@@ -5,13 +5,11 @@ using UnityEngine;
 public class PoolBalas : MonoBehaviour
 {
     [SerializeField] private GameObject Bala;
-    [SerializeField] private Arma InfoArma;
     [SerializeField] private int CantidadBalas;
     [SerializeField] private List<GameObject> LisBalas;
-    private Transform Contenedor;
+    [SerializeField] Transform Contenedor;
     void Start()
     {
-        Contenedor = GameObject.FindGameObjectWithTag("ConteBalas")?.transform;
         addbala(CantidadBalas);
     }
     private void addbala(int can)
@@ -21,7 +19,7 @@ public class PoolBalas : MonoBehaviour
             GameObject B = Instantiate(Bala);
             LisBalas.Add(B);
             B.transform.parent = Contenedor;
-            B.GetComponent<Bala>().RecibirDatos(InfoArma);
+            B.transform.localPosition = new Vector3(0.089f,0,0);
         }
     }
     public GameObject ReturnBala()

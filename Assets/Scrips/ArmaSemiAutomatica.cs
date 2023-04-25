@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class ArmaSemiAutomatica : Arma {
 
-    protected override void Update()
+    public void mensage(int n)
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Disparar();
-        }
-        base.Update();
+        Debug.Log("num "+n);
     }
 }
