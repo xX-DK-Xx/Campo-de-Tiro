@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Arma : MonoBehaviour
 {
     [Header("Referencias")]
     [SerializeField] protected GameObject PuntoSalida;
     [SerializeField] protected ParticleSystem Destello;
-    [SerializeField] protected AudioClip SonidoDisparo;
-    [SerializeField] PoolBalas Impactos;
+    [SerializeField] protected AudioSource Sonido;
+    [SerializeField] protected PoolBalas Impactos;
+    [SerializeField] protected Text TexBalas;
     [Header("Carga")]
     [SerializeField] protected int BalasCargador;
     [SerializeField] protected float TiempoRecarga;
@@ -20,11 +22,11 @@ public class Arma : MonoBehaviour
     protected float DispercionAcumulada;
     protected bool PuedeDisparas = true, PuedeREcargar = true;
     protected Coroutine RutinaDispercion;
-    protected void Awake()
+
+    private void Start()
     {
         MunicionActual = BalasCargador;
     }
-
     public void Disparar(InputAction.CallbackContext Ac)
     {
         if (this.enabled)
@@ -32,12 +34,13 @@ public class Arma : MonoBehaviour
             if (Ac.performed && PuedeDisparas == true && MunicionActual > 0 && Time.deltaTime != 0)
             {
                 MunicionActual--;
-                //controllersounds.instanse?.ponersonido(SonidoDisparo);
+                TexBalas.text = MunicionActual+"/"+BalasCargador;
+                Sonido?.Play();
                 InstanciarBala();
             }
         }
     }
-    public void IntertarRecarga(InputAction.CallbackContext Ac)
+    public void IntentarRecarga(InputAction.CallbackContext Ac)
     {
         if (MunicionActual != BalasCargador && PuedeREcargar && Ac.performed)
         {
@@ -45,11 +48,22 @@ public class Arma : MonoBehaviour
             StartCoroutine(TienpoRecargar());
         }
     }
+    public void VerBalas(InputAction.CallbackContext Ac)
+    {
+        if (Ac.performed)
+        {
+            TexBalas.gameObject.SetActive(true);
+        }
+        else
+        {
+            TexBalas.gameObject.SetActive(false);
+        }
+    }
     protected virtual void InstanciarBala()
     {
         PuedeDisparas = false;
         RaycastHit Impacto;   
-        if (Physics.Raycast(PuntoSalida.transform.position, PuntoSalida.transform.forward, out Impacto, LM))
+        if (Physics.Raycast(PuntoSalida.transform.position, PuntoSalida.transform.forward, out Impacto, 100,LM))
         {
             ControlEstadisticas.Instancia?.Impacto(true);
             GameObject Imp = Impactos.ReturnBala();
@@ -69,6 +83,7 @@ public class Arma : MonoBehaviour
     protected void Recargar()
     {
         MunicionActual = BalasCargador;
+        TexBalas.text = MunicionActual + "/" + BalasCargador;
     }
     public void ActivarArma()
     {
@@ -86,7 +101,7 @@ public class Arma : MonoBehaviour
     }
     protected IEnumerator Cadencia()
     {
-        //Destello.Play();
+        Destello.Play();
         yield return new WaitForSeconds(ratefire);
         PuedeDisparas = true;
     }

@@ -27,7 +27,7 @@ public class ControlEstadisticas : MonoBehaviour
     }
     public void Impacto(bool Tiro)
     {
-        Debug.Log(1);
+        Debug.Log(Tiro);
         DisparosEchos++;
         DisparosTotales++;
         DisparosTex.text = "DISPAROS ECHOS: "+ DisparosTotales;
