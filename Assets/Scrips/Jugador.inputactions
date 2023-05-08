@@ -13,13 +13,49 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Recargar",
+                    "type": "Button",
+                    "id": "53ad25a0-4897-4f34-9ed1-e853cc76bf39",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "VerBalas",
+                    "type": "Button",
+                    "id": "c641c0bc-2350-4b4e-b718-db573f14e23a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ManoDerecha",
+                    "type": "Button",
+                    "id": "7ee2ce21-af60-4934-a540-924ca3921b7a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ManoIzquierda",
+                    "type": "Button",
+                    "id": "4c02d793-2b07-4463-b817-def8cd61514c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
                     "id": "b0ae6fe0-4c60-4541-8754-b59054841d5c",
-                    "path": "<XRInputV1::Oculus::OculusTouchControllerLeft>{RightHand}/grippressed",
+                    "path": "<XRController>{RightHand}/triggerPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -35,6 +71,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "Disparar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "40d21f8d-f806-49ff-8279-beb313d4be2e",
+                    "path": "<XRController>{RightHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Recargar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "82e4c2ab-3963-4a36-883e-0d21a4e3e351",
+                    "path": "<XRController>{RightHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "VerBalas",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5b749d94-6928-4b08-9c74-12f13614d24c",
+                    "path": "<XRController>{RightHand}/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ManoDerecha",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "de2a0ff4-ee2a-4f65-9cb8-cb95c5ed28a4",
+                    "path": "<XRController>{LeftHand}/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ManoIzquierda",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
