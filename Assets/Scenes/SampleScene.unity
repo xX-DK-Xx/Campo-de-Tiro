@@ -4975,7 +4975,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9169967464994428100}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8781f7b02a7e5048a4e3e030c85382c, type: 3}
   m_Name: 
@@ -5096,6 +5096,54 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 4c02d793-2b07-4463-b817-def8cd61514c
     m_ActionName: Pistola/ManoIzquierda
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9169967464994428106}
+        m_TargetAssemblyTypeName: Arma, Assembly-CSharp
+        m_MethodName: Disparar2
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1f027fa9-8b35-4ec8-9ea4-553ac62f0cdf
+    m_ActionName: Pistola/Disparar2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9169967464994428106}
+        m_TargetAssemblyTypeName: Arma, Assembly-CSharp
+        m_MethodName: IntentarRecarga2
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e0ded9cb-0014-47b8-9f09-9164e6bf6e73
+    m_ActionName: Pistola/Recargar2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9169967464994428106}
+        m_TargetAssemblyTypeName: Arma, Assembly-CSharp
+        m_MethodName: VerBalas2
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 53fae569-7a01-4fad-a50b-2ad815256e23
+    m_ActionName: Pistola/VerBalas2
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Pistola
@@ -5210,6 +5258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Valor: 0
+  ManoActiva: 0
 --- !u!114 &9181336628101985352
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -49,6 +49,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Disparar2",
+                    "type": "Button",
+                    "id": "1f027fa9-8b35-4ec8-9ea4-553ac62f0cdf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Recargar2",
+                    "type": "Button",
+                    "id": "e0ded9cb-0014-47b8-9f09-9164e6bf6e73",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "VerBalas2",
+                    "type": "Button",
+                    "id": "53fae569-7a01-4fad-a50b-2ad815256e23",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -115,6 +142,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "ManoIzquierda",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c98646d7-639d-4575-a081-5b64c9543e6b",
+                    "path": "<XRController>{LeftHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Disparar2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d672f086-4d73-43d3-b21c-08fe8e3655fb",
+                    "path": "<XRController>{LeftHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Recargar2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "96e6b26e-94fd-4189-a8cf-8210bc37f7da",
+                    "path": "<XRController>{LeftHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "VerBalas2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

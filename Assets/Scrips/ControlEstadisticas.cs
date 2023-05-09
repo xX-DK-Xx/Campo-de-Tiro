@@ -42,8 +42,8 @@ public class ControlEstadisticas : MonoBehaviour
             Fallos++;
             FallosTex.text = "DISPAROS FALLADOS: "+Fallos;
         }
-        PreTex.text = "PRECICION: " + (float)(ImpactosAcertados / DisparosEchos)*100 + "%";
-        PreGTex.text = "PRECICION: " + (float)(ImpactosTotales / DisparosTotales)*100 + "%";
+        PreTex.text = "PRECICION: " + (float)((float)ImpactosAcertados / (float)DisparosEchos)*100 + "%";
+        PreGTex.text = "PRECICION: " + (float)((float)ImpactosTotales / (float)DisparosTotales)*100 + "%";
     }
     public void Restablecer()
     {

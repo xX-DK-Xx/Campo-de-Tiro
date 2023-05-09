@@ -5,7 +5,7 @@ using UnityEngine;
 public class Mano : MonoBehaviour
 {
     public static Mano Instancia;
-    public int Valor;
+    public int Valor,ManoActiva=1;
     private void Awake()
     {
         Mano.Instancia = this;
@@ -17,5 +17,9 @@ public class Mano : MonoBehaviour
     public void ManoIzquierda()
     {
         Valor = 0;
+    }
+    public void ActivarMano(int valor)
+    {
+        ManoActiva = valor;
     }
 }

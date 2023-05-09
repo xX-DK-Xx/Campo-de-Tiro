@@ -29,7 +29,7 @@ public class Arma : MonoBehaviour
     }
     public void Disparar(InputAction.CallbackContext Ac)
     {
-        if (this.enabled)
+        if (this.enabled && Mano.Instancia.ManoActiva == 1)
         {
             if (Ac.performed && PuedeDisparas == true && MunicionActual > 0 && Time.deltaTime != 0)
             {
@@ -40,9 +40,30 @@ public class Arma : MonoBehaviour
             }
         }
     }
+    public void Disparar2(InputAction.CallbackContext Ac)
+    {
+        if (this.enabled && Mano.Instancia.ManoActiva == 0)
+        {
+            if (Ac.performed && PuedeDisparas == true && MunicionActual > 0 && Time.deltaTime != 0)
+            {
+                MunicionActual--;
+                TexBalas.text = MunicionActual + "/" + BalasCargador;
+                Sonido?.Play();
+                InstanciarBala();
+            }
+        }
+    }
     public void IntentarRecarga(InputAction.CallbackContext Ac)
     {
-        if (MunicionActual != BalasCargador && PuedeREcargar && Ac.performed)
+        if (this.enabled && Mano.Instancia.ManoActiva == 1 && MunicionActual != BalasCargador && PuedeREcargar && Ac.performed)
+        {
+            PuedeREcargar = false;
+            StartCoroutine(TienpoRecargar());
+        }
+    }
+    public void IntentarRecarga2(InputAction.CallbackContext Ac)
+    {
+        if (this.enabled && Mano.Instancia.ManoActiva == 0 && MunicionActual != BalasCargador && PuedeREcargar && Ac.performed)
         {
             PuedeREcargar = false;
             StartCoroutine(TienpoRecargar());
@@ -50,13 +71,30 @@ public class Arma : MonoBehaviour
     }
     public void VerBalas(InputAction.CallbackContext Ac)
     {
-        if (Ac.performed)
+        if (this.enabled && Mano.Instancia.ManoActiva == 1)
         {
-            TexBalas.gameObject.SetActive(true);
+            if (Ac.performed)
+            {
+                TexBalas.gameObject.SetActive(true);
+            }
+            else
+            {
+                TexBalas.gameObject.SetActive(false);
+            }
         }
-        else
+    }
+    public void VerBalas2(InputAction.CallbackContext Ac)
+    {
+        if (this.enabled && Mano.Instancia.ManoActiva == 0)
         {
-            TexBalas.gameObject.SetActive(false);
+            if (Ac.performed)
+            {
+                TexBalas.gameObject.SetActive(true);
+            }
+            else
+            {
+                TexBalas.gameObject.SetActive(false);
+            }
         }
     }
     protected virtual void InstanciarBala()

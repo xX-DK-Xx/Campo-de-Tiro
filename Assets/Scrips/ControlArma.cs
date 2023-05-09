@@ -10,19 +10,24 @@ public class ControlArma : MonoBehaviour
     [SerializeField] GameObject ManoIzq;
     public void PrenderArma()
     {
-        if (Mano.Instancia.Valor == 1)
+        if (!pistola.enabled)
         {
-            Modelo.SetActive(false);
-            pistola.transform.SetParent(ManoDere.transform);
+            if (Mano.Instancia.Valor == 1)
+            {
+                Modelo.SetActive(false);
+                pistola.transform.SetParent(ManoDere.transform);
+                Mano.Instancia.ActivarMano(1);
+            }
+            else
+            {
+                Modelo2.SetActive(false);
+                pistola.transform.SetParent(ManoIzq.transform);
+                Mano.Instancia.ActivarMano(0);
+            }
+            pistola.enabled = true;
+            pistola.transform.localPosition = Vector3.zero;
+            pistola.transform.localRotation = Quaternion.Euler(-90, 90, 0);
         }
-        else
-        {
-            Modelo2.SetActive(false);
-            pistola.transform.SetParent(ManoIzq.transform);
-        }
-        pistola.enabled = true;
-        pistola.transform.localPosition = Vector3.zero;
-        pistola.transform.localRotation = Quaternion.Euler(-90,90,0);
     }
     public void ApagarArma()
     {
